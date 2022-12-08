@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="/css/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
+  <style>
+  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+  </style>
+  <title>E-QMS Administrative</title>
+</head>
+<body class="w3-light-grey">
+  <!-- Top container -->
+  <div class="w3-bar w3-top w3-large" style="z-index:4; background-color:#0B4619; color:white;">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+    <span class="w3-bar-item w3-right">Administrative</span>
+  </div>
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container w3-row">
+      <div class="w3-col s4">
+        <img src="/images/img_avatar.png" class="w3-circle w3-margin-right" style="width:46px">
+      </div>
+      <div class="w3-col s8 w3-bar">
+        <span>Welcome to <strong>Guidance Counselor / OWS Office Administrative Panel</strong></span><br>
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container">
+      <h5>Dashboard</h5>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+      <a href="/admin-guidance" class="w3-bar-item w3-button w3-padding">  Overview</a>
+      <a href="/admin-queue-guidance" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Monitor Queue</a>
+      <a href="/admin-appointment-guidance" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-list fa-fw"></i>  Appointment list</a>
+      <a href="/view-queue-guidance"  target="_blank" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  View Queue</a>
+      <a href="/login" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sign-out"></i>  Log out</a>
+    </div>
+  </nav>
+
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+    <!-- Header -->
+    <div class="w3-container" id="adminheader" style="padding-top:22px">
+      <h5><b> Guidance Counselor / OWS Office Queue Monitor</b></h5>
+    </div>
+
+    <div class="w3-containere" id="servingheader" style="padding-top:22px">
+      <div class="w3-card white" style="width:50%; margin:auto">
+        <div class="w3-container w3-center w3-green w3-padding-large">
+          <h3>NOW SERVING</h3>
+        </div>
+        <div class="w3-container w3-white"> 
+          <div class="w3-center" style="padding-top:10px">
+            <h1 class="w3-xxxlarge"style="font-weight: bold;"><%= rset[0].queueNumber %></h1>
+          </div>
+          <div class="w3-center">
+            <h5><%= rset[0].name %></h5>
+            <h6 class="w3-text-grey">Guidance Counselor / OWS Office Office</h6>
+          </div>
+          <div class="w3-right w3-padding">
+            <% rset.forEach((user)=>{ %>
+            <a href="/pending-guidance/<%= user.queueNumber %>" class="w3-button w3-orange w3-round-large">Await</a>
+            <% }) %>
+          </div>
+
+        </div>
+        </div>
+    </div>
+    <div class="w3-container" id="delbutton" style="padding-top:22px">
+      <a href="" class="w3-button w3-red w3-round-large">Delete Queues all</a>
+    </div>
+
+    <hr>
+    <div class="w3-container w3-center" id="waitingheader">
+      <h3><b> WAITING</b></h3>
+    </div>
+    <div class="w3-row">
+      <div class="w3-container w3-responsive w3-half"  style="overflow-x: auto">
+        <table class="w3-table  w3-hoverable w3-white w3-bordered" id="tbl1">
+            <thead style="background-color: #153462; color:white;">
+                <tr>
+                  <th class="w3-center"colspan="4">STUDENT/GUEST</b></th>
+                </tr>
+                <tr class=" w3-tiny">
+                  <th>Queue Number</th>
+                  <th>Full Name</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class=" w3-tiny">
+                <% rset1.forEach((user)=>{ %>
+                    <tr class="item">
+                      <td><%= user.queueNumber %></td>
+                      <td><%= user.name %></td>
+                      <td><%= user.status %></td>
+                        <td>
+                            <a href="/served-guidance/<%= user.queueNumber %>" class="w3-button w3-green w3-tiny w3-round-large">Serve</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+      </div>
+      <div class="w3-container w3-responsive w3-half"  style="overflow-x: auto">
+        <table class="w3-table w3-hoverable w3-white w3-bordered" id="tbl2">
+          <thead style="background-color: #FFCC1D; color:black;">
+              <tr>
+                <th class="w3-center"colspan="4">PRIORITY (Senior Citizen/PWD)</b></th>
+              </tr>
+              <tr class=" w3-tiny">
+                <th>Queue Number</th>
+                <th>Full Name</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+          </thead>
+          <tbody class=" w3-tiny">
+              <% rset2.forEach((user)=>{ %>
+                  <tr class="item">
+                    <td><%= user.queueNumber %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.status %></td>
+                      <td>
+                        <a href="/served-guidance/<%= user.queueNumber %>" class="w3-button w3-green w3-tiny w3-round-large">Serve</a>
+                      </td>
+                  </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container w3-responsive"  style="overflow-x: auto; width:50%">
+      <table class="w3-table w3-hoverable w3-white w3-bordered" id="tbl3">
+          <thead style="background-color: #EF9A53; color:white;">
+              <tr>
+                <th class="w3-center"colspan="4">PENDING</b></th>
+              </tr>
+              <tr class=" w3-tiny">
+                <th>Queue Number</th>
+                <th>Full Name</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+          </thead>
+          <tbody class=" w3-tiny">
+              <% rset3.forEach((user)=>{ %>
+                  <tr class="item">
+                    <td><%= user.queueNumber %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.status %></td>
+                      <td>
+                        <a href="/served-guidance/<%= user.queueNumber %>" class="w3-button w3-green w3-tiny w3-round-large">Serve</a>
+                      </td>
+                  </tr>
+              <% }) %>
+          </tbody>
+      </table>
+    </div>
+    <!-- End page content -->
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+  // Get the Sidebar
+  var mySidebar = document.getElementById("mySidebar");
+
+  // Get the DIV with overlay effect
+  var overlayBg = document.getElementById("myOverlay");
+
+  // Toggle between showing and hiding the sidebar, and add overlay effect
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+      overlayBg.style.display = "none";
+    } else {
+      mySidebar.style.display = 'block';
+      overlayBg.style.display = "block";
+    }
+  }
+
+  // Close the sidebar with the close button
+  function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+  }
+  $(document).ready(function () {
+    $('#tbl1').DataTable();
+    $('#tbl2').DataTable();
+    $('#tbl3').DataTable();
+  });
+  </script>
+
+
+
+</body>
+</html>

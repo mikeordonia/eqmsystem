@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Queuing Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/w3.css">
+    <script src="/w3.js"></script>
+    <script src="/datetime.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+    <!-- html2pdf CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+  </head>
+
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+    
+    body, html {
+      height: 100%;
+      line-height: 1.8;
+    }
+    
+    /* Full height image header */
+    .bgimg-1 {
+      background-position: center;
+      background-size: cover;
+      background-image: url(/images/mmsu-cit-front.jpg);
+      min-height: 100%;
+    }
+    
+    .w3-bar .w3-button {
+      padding: 16px;
+    }
+    </style>
+  <body onload="startTime()">
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <div class="w3-bar w3-white w3-card" id="myNavbar">
+          <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium" onclick="w3_open()">
+          <i class="fa fa-bars"></i></a>
+              
+          <a href="/" class="w3-bar-item w3-button w3-wide w3-hide-medium w3-hide-small">E-Queuing Management System</a>
+          <a href="/" class="w3-bar-item w3-button w3-wide w3-hide-large w3-hide-small">E-QM System</a>
+          <a href="/h" class="w3-bar-item w3-button w3-wide w3-hide-large w3-hide-medium">E-Queuing Mgt. System</a>
+          <!-- Right-sided navbar links -->
+          <div class="w3-right w3-hide-small">
+              <a href="/" class="w3-bar-item w3-button">HOME</a>
+              <a href="/#about" class="w3-bar-item w3-button">ABOUT</a>
+              <a href="/#offices" class="w3-bar-item w3-button"> OFFICES</a>
+              <a href="/#team" class="w3-bar-item w3-button"> TEAM</a>
+          </div>
+      </div>
+  </div>
+
+  <!-- Sidebar on small screens when clicking the menu icon -->
+  <nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none; background-color: #116530; color: white" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+      <a href="/" class="w3-bar-item w3-button">HOME</a>
+      <a href="/#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="/#offices" class="w3-bar-item w3-button"> OFFICES</a>
+      <a href="/#team" class="w3-bar-item w3-button"> TEAM</a>
+  </nav>
+
+  <!-- Header with full-height image -->
+  <header class="bgimg-1 w3-display-container" id="home">
+    <div class="w3-display-left w3-text-white" style="padding:48px">
+        <img src="/images/MMSU & CIT Logo.png" class="w3-hide-small w3-hide-medium" alt="MMSU CIT logo" style="height: 200px"><br>
+        <img src="/images/MMSU & CIT Logo.png"  class="w3-hide-large w3-hide-small" alt="MMSU CIT logo" style="height: 150px"><br>
+        <img src="/images/MMSU & CIT Logo.png"  class="w3-hide-large w3-hide-medium" alt="MMSU CIT logo" style="height: 100px"><br>
+        <span class="w3-jumbo w3-hide-small">E-Queuing Management System</span><br>
+        <span class="w3-xxlarge w3-hide-large w3-hide-medium">E-Queuing Management System</span><br>
+        <span class="w3-xxlarge w3-hide-small w3-hide-medium">for Mariano Marcos State University -  College of Industrial Technology</span>
+        <span class="w3-xlarge w3-hide-large ">for Mariano Marcos State University -  College of Industrial Technology</span>
+
+    </div> 
+  </header>
+  
+  <!-- About Section -->
+  <div class="w3-container w3-padding-64" id="about">
+    <div class="w3-content" style="max-width:800px">
+        <h1 class="w3-center">ABOUT</h1> 
+        <div class="w3-padding-small w3-center" style="background-color: #116530;"></div><br>
+        <h2 class="w3-center w3-xlarge">It is a web-based application that facilitates a well-organized line-up system of every 
+            transaction in different department in MMSU CIT.</h2>
+        <h2 class="w3-center w3-xlarge">This E-Queuing Management System can manage time, queues, and schedules and aims to mitigate the high volume of 
+            students and make the transactions run smoothly. This system can identify which student or visitor to serve with 
+            the queue number and appointment application.</h2> <br>  
+    </div>
+  </div>
+  <!-- end about Section -->
+  
+  <!-- Sevices Section -->
+  <div class="w3-container w3-light-grey w3-padding-64" id="offices"> 
+    <h1 class="w3-center w3-padding-16">OFFICES</h1> 
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100" style="outline: solid green;">
+            <img clas src="images/Registrar and cashier.jpg" class="card-img-top" alt="cashier office">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Cashier Office</h5>
+                <p class="card-text">The office located at the 1st floor right side of the building.</p>
+                <hr style="border-top: 1px solid black;">
+                <a onclick="document.getElementById('queuemodalCashier').style.display='block'" class="btn w3-green" style="margin: 2px">Get Queue</a>
+                <a href="/appointment_cashier" class="btn w3-green" style="margin: 2px">Appointment</a>
+                <a href="/view-queue-guidance"  target="_blank" class="btn btn-primary" style="margin: 2px">View Queue</a>
+            </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100" style="outline: solid green;">
+            <img clas src="images/Guidance.jpg" class="card-img-top" alt="cashier office">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Guidance Counselor / OWS Office</h5>
+                <p class="card-text">The office located at the 2nd floor left side end of the building.</p>
+                <hr style="border-top: 1px solid black;">
+                <a onclick="document.getElementById('queuemodalGuidance').style.display='block'" class="btn w3-green" style="margin: 2px">Get Queue</a>
+                <a href="/appointment_guidance" class="btn w3-green" style="margin: 2px">Appointment</a>
+                <a href="/view-queue-guidance"  target="_blank" class="btn btn-primary" style="margin: 2px">View Queue</a>
+            </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100" style="outline: solid green;">
+            <img clas src="images/Registrar and cashier.jpg" class="card-img-top" alt="cashier office">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Registrar Office</h5>
+                <p class="card-text">The office located at the ground floor right side of the building.</p>
+                <hr style="border-top: 1px solid black;">
+                <a onclick="document.getElementById('queuemodalRegistrar').style.display='block'" class="btn w3-green" style="margin: 2px">Get Queue</a>
+                <a href="/appointment_registrar" class="btn w3-green" style="margin: 2px">Appointment</a>
+                <a href="/view-queue-registrar"  target="_blank" class="btn btn-primary" style="margin: 2px">View Queue</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+  <!-- end service Section -->
+
+  <!-- Team Section -->
+  <div class="w3-container" style="padding:128px 16px" id="team">
+    <h1 class="w3-center">THE TEAM</h1>
+    <p class="w3-center w3-large">The behind of the E-Queuing Management System.</p>
+    <div class="w3-row-padding" style="margin-top:64px">
+      <div class="w3-col l3 m6 ">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="/images/Franz Acob.jpg" class="card" alt="Franz Acob" style="width:100%">
+          <p class="fs-4 fw-semi-bold w3-margin-top">Franz Justine T. Acob</p>
+          <p class="w3-opacity">Researcher</p>
+          <div class="w3-center w3-padding-16">
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.facebook.com/acobtomas.justinefranz">
+              <i class="fab fa-facebook-square w3-large"> </i></a>
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.instagram.com/franzacob/">
+              <i class="fab fa-instagram w3-large"> </i></a>
+            <a type="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="mailto:acobfranz483@gmail.com">
+              <i class="fa fa-envelope "> </i></a>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 ">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="/images/Honey Mae Acoba.jpg" class="card" alt="Honey Mae Acoba" style="width:100%">
+          <p class="fs-4 fw-semi-bold w3-margin-top">Honey Mae B. Acoba</p>
+          <p class="w3-opacity">Researcher</p>
+          <div class="w3-center w3-padding-16">
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.facebook.com/acobtomas.justinefranz">
+              <i class="fab fa-facebook-square w3-large"> </i></a>
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.instagram.com/franzacob/">
+              <i class="fab fa-instagram w3-large"> </i></a>
+            <a type="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="mailto:acobfranz483@gmail.com">
+              <i class="fa fa-envelope "> </i></a>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 ">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="/images/Michael John Bagaoisan.jpg" class="card" alt="Michael John Bagaoisan" style="width:100%">
+          <p class="fs-4 fw-semi-bold w3-margin-top">Michael John M. Bagaoisan</p>
+          <p class="w3-opacity">Developer</p>
+          <div class="w3-center w3-padding-16">
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.facebook.com/acobtomas.justinefranz">
+              <i class="fab fa-facebook-square w3-large"> </i></a>
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.instagram.com/franzacob/">
+              <i class="fab fa-instagram w3-large"> </i></a>
+            <a type="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="mailto:acobfranz483@gmail.com">
+              <i class="fa fa-envelope "> </i></a>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 ">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="/images/Mike Jozzle Ordonia.jpg" class="card" alt="Mike Jozzle Ordonia" style="width:100%">
+          <p class="fs-4 fw-semi-bold w3-margin-top">Mike Jozzle C. Ordonia</p>
+          <p class="w3-opacity">Developer</p>
+          <div class="w3-center w3-padding-16">
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.facebook.com/acobtomas.justinefranz">
+              <i class="fab fa-facebook-square w3-large"> </i></a>
+            <a role="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="https://www.instagram.com/franzacob/">
+              <i class="fab fa-instagram w3-large"> </i></a>
+            <a type="button" class="btn btn-outline-success" style="outline-style: solid; margin: 5px;" href="mailto:acobfranz483@gmail.com">
+              <i class="fa fa-envelope "> </i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end Team section-->
+
+  <!--Queue Cashier Modal -->
+  <div id="queuemodalCashier" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round-large" style="max-width:600px; margin-top: 40px">
+      <div class="w3-container w3-border-bottom"> 
+        <div class="modal-header mb-2">
+          <h4 class="modal-title">Cashier Queue Form</h4>
+          <button type="button" class="btn-close" onclick="document.getElementById('queuemodalCashier').style.display='none'"></button>
+        </div>
+      </div>
+      <form method="POST" class="w3-container w3-padding-16">
+        <div class="w3-container">
+          <p class="w3-row w3-left w3-padding-small" id="displayDATE"></p>
+          <p class="w3-row w3-left w3-padding-small" id="displayTIME"></p>
+          <input type="hidden" id="timeTodatabase" name="times" value="time">
+          <input type="hidden" id="dateTodatabase" name="dates" value="date">  
+        </div>
+        <div class="form-floating mb-3">
+          <input name="queuename" type="text" class="form-control" placeholder="Full Name" required>
+          <label for="queuename">Full name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select name="queuestatus" class="form-select" aria-label="Floating label" required>
+            <option value="">Select status</option>
+            <option value="Student">Student</option>
+            <option value="Guest">Guest</option>
+            <option value="Senior/Pwd">Senior/Pwd</option>
+          </select>
+          <label for="queuestatus">Status</label>
+        </div>
+        <input class="w3-button w3-block w3-green w3-section w3-padding w3-round" type="submit" formaction="/queue_cashier" value="Submit">
+      </form>
+    </div>
+  </div>
+  <!---End Queue Cashier Modal--->
+    <!--Success Queue Cashier Modal-->
+    <div id="successQueueCashier" class="w3-modal w3-animate-opacity">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round-large" style="max-width:600px;">
+        <div class="w3-container w3-border-bottom"> 
+          <div class="modal-header mb-3">
+            <h4 class="modal-title">Get Your Queue Number Here.</h4>
+            <button type="button" class="btn-close" onclick="document.getElementById('successQueueCashier').style.display='none'"></button>
+          </div>
+        </div>
+        <div class="w3-container w3-padding-16">
+          <div class="alert alert-success mb-3" role="alert"> Successfully book a appointment</div>
+          <div class="w3-panel" id="makepdf">
+            <div class="w3-center">
+              <img src="/images/MMSU & CIT Logo.png" alt="MMSU Logo" style="max-width: 30%;">
+              <h2>Mariano Marcos State University</h2>
+              <h3>College of Industrial Technology</h3>
+              <hr style="height: 2px; background-color:black">
+            </div>
+            <div class="row">
+              <div class="container">
+                <p class="fs-6">Cashier Office
+                  <br><%= getqdate%> | <%= getqtime%></p>
+              </div>
+              <div class="w3-center">
+                <div class="form-text fst-italic">Queue Number</div>
+                <h1 class="w3-xxxlarge"style="font-weight: bold;"><%= number%></h1>
+              </div>
+              <div class="w3-center">
+                <h3><%= fullname%> (<%= qstatus%>)</h3>
+              </div>
+            </div>
+            <div class="form-text">Please wait for your queue number to be called/displayed on the monitor.</div>
+          </div>
+          <div class="w3-container w3-border-top w3-padding-16 text-end">
+            <button type="button" class="btn btn-primary" id="download"><i class="fas fa-print"></i> Download</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('successQueueCashier').style.display='none'">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end Success Queue Cashier Modal-->
+  
+  <!--Queue Guidance Modal -->
+  <div id="queuemodalGuidance" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round-large" style="max-width:600px; margin-top: 40px">
+      <div class="w3-container w3-border-bottom"> 
+        <div class="modal-header mb-2">
+          <h4 class="modal-title">Guidance Counselor/OSW Queue Form</h4>
+          <button type="button" class="btn-close" onclick="document.getElementById('queuemodalGuidance').style.display='none'"></button>
+        </div>
+      </div>
+      <form method="POST" class="w3-container w3-padding-16">
+        <div class="w3-container">
+          <p class="w3-row w3-left w3-padding-small" id="displayDATE3"></p>
+          <p class="w3-row w3-left w3-padding-small" id="displayTIME3"></p>
+          <input type="hidden" id="timeTodatabase3" name="times" value="time">
+          <input type="hidden" id="dateTodatabase3" name="dates" value="date">  
+        </div>
+        <div class="form-floating mb-3">
+          <input name="queuename" type="text" class="form-control" placeholder="Full Name" required>
+          <label for="queuename">Full name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select name="queuestatus" class="form-select" aria-label="Floating label" required>
+            <option value="">Select status</option>
+            <option value="Student">Student</option>
+            <option value="Guest">Guest</option>
+            <option value="Senior/Pwd">Senior/Pwd</option>
+          </select>
+          <label for="queuestatus">Status</label>
+        </div>
+        <input class="w3-button w3-block w3-green w3-section w3-padding w3-round" type="submit" formaction="/queue_guidance" value="Submit">
+      </form>
+    </div>
+  </div>
+  <!---End Queue Guidance Modal--->
+    <!--Success Queue Guidance Modal-->
+    <div id="successQueueGuidance" class="w3-modal w3-animate-opacity">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round-large" style="max-width:600px;">
+        <div class="w3-container w3-border-bottom"> 
+          <div class="modal-header mb-3">
+            <h4 class="modal-title">Get Your Queue Number Here.</h4>
+            <button type="button" class="btn-close" onclick="document.getElementById('successQueueGuidance').style.display='none'"></button>
+          </div>
+        </div>
+        <div class="w3-container w3-padding-16">
+          <div class="alert alert-success mb-3" role="alert"> Your Queue Number is successfully generated!</div>
+          <div class="w3-panel" id="makepdf">
+            <div class="w3-center">
+              <img src="/images/MMSU & CIT Logo.png" alt="MMSU Logo" style="max-width: 30%;">
+              <h2>Mariano Marcos State University</h2>
+              <h3>College of Industrial Technology</h3>
+              <hr style="height: 2px; background-color:black">
+            </div>
+            <div class="row">
+              <div class="container">
+                <p class="fs-6">Guidance Counselor/OSW Office
+                  <br><%= getqdate%> | <%= getqtime%></p>
+              </div>
+              <div class="w3-center">
+                <div class="form-text fst-italic">Queue Number</div>
+                <h1 class="w3-xxxlarge"style="font-weight: bold;"><%= number%></h1>
+              </div>
+              <div class="w3-center">
+                <h3><%= fullname%> (<%= qstatus%>)</h3>
+              </div>
+            </div>
+            <div class="form-text">Please wait for your queue number to be called/displayed on the monitor.</div>
+          </div>
+          <div class="w3-container w3-border-top w3-padding-16 text-end">
+            <button type="button" class="btn btn-primary" id="download"><i class="fas fa-print"></i> Download</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('successQueueGuidance').style.display='none'">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end Success Queue Guidance Modal-->
+  
+  <!--Queue Registrar Modal -->
+  <div id="queuemodalRegistrar" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round-large" style="max-width:600px; margin-top: 40px">
+    <div class="w3-container w3-border-bottom"> 
+        <div class="modal-header mb-2">
+        <h4 class="modal-title">Registrar Queue Form</h4>
+        <button type="button" class="btn-close" onclick="document.getElementById('queuemodalRegistrar').style.display='none'"></button>
+        </div>
+    </div>
+    <form method="POST" class="w3-container w3-padding-16">
+        <div class="w3-container">
+        <p class="w3-row w3-left w3-padding-small" id="displayDATE4"></p>
+        <p class="w3-row w3-left w3-padding-small" id="displayTIME4"></p>
+        <input type="hidden" id="timeTodatabase4" name="times" value="time">
+        <input type="hidden" id="dateTodatabase4" name="dates" value="date">  
+        </div>
+        <div class="form-floating mb-3">
+        <input name="queuename" type="text" class="form-control" placeholder="Full Name" required>
+        <label for="queuename">Full name</label>
+        </div>
+        <div class="form-floating mb-3">
+        <select name="queuestatus" class="form-select" aria-label="Floating label" required>
+            <option value="">Select status</option>
+            <option value="Student">Student</option>
+            <option value="Guest">Guest</option>
+            <option value="Senior/Pwd">Senior/Pwd</option>
+        </select>
+        <label for="queuestatus">Status</label>
+        </div>
+        <input class="w3-button w3-block w3-green w3-section w3-padding w3-round" type="submit" formaction="/queue_registrar" value="Submit">
+    </form>
+    </div>
+  </div>
+  <!---End Queue Registrar Modal--->
+    <!--Success Queue Registrar Modal-->
+    <div id="successQueueRegistar" class="w3-modal w3-animate-opacity">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-round-large" style="max-width:600px;">
+      <div class="w3-container w3-border-bottom"> 
+        <div class="modal-header mb-3">
+          <h4 class="modal-title">Get Your Queue Number Here.</h4>
+          <button type="button" class="btn-close" onclick="document.getElementById('successQueueRegistar').style.display='none'"></button>
+        </div>
+      </div>
+      <div class="w3-container w3-padding-16">
+        <div class="alert alert-success mb-3" role="alert"> Your Queue Number is successfully generated!</div>
+          <div class="w3-panel" id="makepdf">
+            <div class="w3-center">
+              <img src="/images/MMSU & CIT Logo.png" alt="MMSU Logo" style="max-width: 30%;">
+              <h2>Mariano Marcos State University</h2>
+              <h3>College of Industrial Technology</h3>
+              <hr style="height: 2px; background-color:black">
+            </div>
+            <div class="row">
+              <div class="container">
+                <p class="fs-6">Registrar Office
+                  <br><%= getqdate%> | <%= getqtime%></p>
+              </div>
+              <div class="w3-center">
+                <div class="form-text fst-italic">Queue Number</div>
+                  <h1 class="w3-xxxlarge"style="font-weight: bold;"><%= number%></h1>
+                  </div>
+                  <div class="w3-center">
+                  <h3><%= fullname%> (<%= qstatus%>)</h3>
+                </div>
+              </div>
+              <div class="form-text">Please wait for your queue number to be called/displayed on the monitor.</div>
+            </div>
+            <div class="w3-container w3-border-top w3-padding-16 text-end">
+              <button type="button" class="btn btn-primary" id="download"><i class="fas fa-print"></i> Download</button>
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('successQueueRegistar').style.display='none'">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end Success Queue Registrar Modal-->
+    
+    <!-- Footer -->
+    <footer class="w3-center w3-padding-16" style="background-color: #116530; color: white">
+      <div class="credit"> Copyright © 2022 - <span>E-Queuing Management System</span> | Acob, Acoba, Bagaoisan, and Ordonia </div>
+    </footer>
+      
+      <script>
+               
+        var ans = '<%- ans %>'
+        if(ans == 'sQueueCashier'){
+          w3.show('#successQueueCashier')
+        } else if(ans == 'sQueueDean'){
+          w3.show('#successQueueDean')
+        } else if(ans == 'sQueueDepChair'){
+          w3.show('#successQueueDepChairman')
+        } else if(ans == 'sQueueGuidance'){
+          w3.show('#successQueueGuidance')
+        } else if(ans == 'sQueueRegistrar'){
+          w3.show('#successQueueRegistar')
+        }
+
+        //download pdf///
+        var download = document.getElementById("download");
+        var makepdf = document.getElementById("makepdf");
+
+        download.addEventListener("click", function () {
+            html2pdf().set({margin: [0,1,1,1], filename: '<%= fullname%> QueueNumber.pdf', html2canvas:  { scale: 2 }, jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }}).from(makepdf).save();
+        });
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+          } else {
+            mySidebar.style.display = 'block';
+          }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="/css/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
+  <style>
+  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+  </style>
+  <title>E-QMS Administrative</title>
+
+  <meta http-equiv="refresh" content="30">
+</head>
+<body class="w3-light-grey" onload="startTime()">
+  <!-- Top container -->
+  <div class="w3-bar w3-top w3-large" style="z-index:4; background-color:#0B4619; color:white;">
+    <span class="w3-bar-item w3-left">Guidance Counselor / OWS Office Queue</span>
+  </div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-top:43px; ">
+    <div class="row">
+      <div class="col-12"style="background-color: #E8E8CC">
+        <div class="w3-container w3-padding-16">
+          <h2 class="w3-row w3-left w3-padding-small" id="displayDATE"></h2>
+          <h2 class="w3-row w3-left w3-padding-small" id="displayTIME"></h2>
+          <input type="hidden" id="timeTodatabase" name="times" value="time">
+          <input type="hidden" id="dateTodatabase" name="dates" value="date">  
+        </div>
+      </div>
+    </div>
+    <div class="w3-row w3-padding-large">
+      <div class="w3-half w3-padding-small w3-center">
+          <video style="width:100%;" muted controls autoplay loop>
+            <source src="/videos/mmsu-cit.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div class="w3-half w3-padding-small " >
+        <div class="w3-container w3-center w3-green w3-padding-32">
+          <h1>NOW SERVING</h1>
+        </div>
+        <div class="w3-container w3-white" style="height: 50%;"> 
+          <div class="w3-center" style="padding-top:10px">
+            <h1 class="w3-xxxlarge"style="font-weight: bold;"><%= rset[0].queueNumber %></h1>
+          </div>
+          <div class="w3-center">
+            <h2><%= rset[0].name %></h2>
+            <h6 class="w3-text-grey">Guidance Counselor / OWS Office Office</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-padding-large">
+      <div class="w3-container w3-center w3-teal w3-padding-large">
+        <h3>WAITING</h3>
+      </div>
+      <div class="w3-row">
+        <div class="w3-third w3-padding-small">
+          <table class="w3-table" id="tbl1">
+            <thead style="background-color: #153462; color:white;">
+              <tr>
+                <th class="w3-center"colspan="2">STUDENT/GUEST</b></th>
+              </tr>
+              <tr class="w3-tiny">
+                <th>Queue Number</th>
+                <th>Full Name</th>
+              </tr>
+            </thead>
+            <tbody class="w3-white">
+                <% rset1.forEach((user)=>{ %>
+                    <tr class="item">
+                      <td><%= user.queueNumber %></td>
+                      <td><%= user.name %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="w3-third w3-padding-small">
+          <table class="w3-table" id="tbl2">
+            <thead style="background-color: #FFCC1D; color:black;">
+              <tr>
+                <th class="w3-center"colspan="2">PRIORITY (Senior Citizen/PWD)</b></th>
+              </tr>
+              <tr class="w3-tiny">
+                <th>Queue Number</th>
+                <th>Full Name</th>
+              </tr>
+            </thead>
+            <tbody class="w3-white">
+                <% rset2.forEach((user)=>{ %>
+                    <tr class="item">
+                      <td><%= user.queueNumber %></td>
+                      <td><%= user.name %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="w3-third w3-padding-small">
+          <table class="w3-table" id="tbl3">
+            <thead style="background-color: #EF9A53; color:white;">
+              <tr>
+                <th class="w3-center"colspan="2">PENDING</b></th>
+              </tr>
+              <tr class="w3-tiny">
+                <th>Queue Number</th>
+                <th>Full Name</th>
+              </tr>
+            </thead>
+            <tbody class="w3-white">
+              <% rset3.forEach((user)=>{ %>
+                    <tr class="item">
+                      <td><%= user.queueNumber %></td>
+                      <td><%= user.name %></td>
+                    </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- End page content -->
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+  // Get the Sidebar
+  var mySidebar = document.getElementById("mySidebar");
+
+  // Get the DIV with overlay effect
+  var overlayBg = document.getElementById("myOverlay");
+
+  // Toggle between showing and hiding the sidebar, and add overlay effect
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+      overlayBg.style.display = "none";
+    } else {
+      mySidebar.style.display = 'block';
+      overlayBg.style.display = "block";
+    }
+  }
+
+  // Close the sidebar with the close button
+  function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+  }
+  $(document).ready(function () {
+    $('#tbl1').DataTable();
+    $('#tbl2').DataTable();
+    $('#tbl3').DataTable();
+  });
+
+
+  function startTime() {
+    var dateTime = new Date();
+    var today = new Date();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+
+    var amPM = "AM";
+    if(hours > 12){
+      if(hours>= 12){
+        amPM = "PM";
+      }
+      hours=hours-12;
+    } else if (hours == 12) {
+      if(hours>= 12){
+        amPM = "PM";
+      }
+    }else if (hours == 0){
+      hours=hours+12;
+    }
+
+    if(minutes < 10){
+      minutes = "0" + minutes;
+    }
+    
+    var time = hours + ":" + minutes + " " + amPM
+
+    var theTIME = document.getElementById("timeTodatabase");
+    theTIME.value = time;
+
+    var theDATE = document.getElementById("dateTodatabase");
+    theDATE.value = dateTime.toLocaleDateString();
+
+    document.getElementById("displayTIME").innerHTML = time;
+    document.getElementById("displayDATE").innerHTML = dateTime.toDateString();
+
+    setTimeout(function clock(){
+      startTime(),1000
+    })
+  }
+
+  window.setTimeout( function() {
+    window.location.reload();
+  }, 30000);
+  </script>
+
+
+
+</body>
+</html>
